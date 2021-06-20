@@ -4,8 +4,9 @@ TERMUX_PKG_LICENSE="LGPL-2.1"
 TERMUX_PKG_MAINTAINER="Leonid Pliushch <leonid.pliushch@gmail.com>"
 TERMUX_PKG_VERSION=1:5.2.0
 TERMUX_PKG_REVISION=5
-TERMUX_PKG_SRCURL=https://download.qemu.org/qemu-${TERMUX_PKG_VERSION:2}.tar.xz
-TERMUX_PKG_SHA256="cb18d889b628fbe637672b0326789d9b0e3b8027e0445b936537c78549df17bc"
+TERMUX_PKG_SRCURL=https://github.com/ktemkin/qemu
+TERMUX_PKG_BRANCH='with_tcti'
+TERMUX_PKG_SHA256="6051b80efdf407870b43239fe2d85f1573d546ab1a1d8609f9fdbf139305ae5f"
 TERMUX_PKG_DEPENDS="attr, glib, libbz2, libc++, libcap-ng, libcurl, libgcrypt, libiconv, libjpeg-turbo, liblzo, libnfs, libpixman, libpng, libssh, libx11, ncurses, qemu-common, resolv-conf, sdl2, sdl2-image, zlib, gtk3, libvte, spice-server"
 TERMUX_PKG_CONFLICTS="qemu-system-x86_64, qemu-system-x86_64-headless, qemu-system-x86-64-headless"
 TERMUX_PKG_REPLACES="qemu-system-x86_64, qemu-system-x86_64-headless, qemu-system-x86-64-headless"
@@ -52,6 +53,10 @@ termux_step_configure() {
 	QEMU_TARGETS+="riscv32-softmmu,"
 	QEMU_TARGETS+="riscv64-softmmu,"
 	QEMU_TARGETS+="x86_64-softmmu"
+	QEMU_TARGETS+="ppc-softmmu"
+	QEMU_TARGETS+="ppc64-softmmu"
+	QEMU_TARGETS+="mips-softmmu"
+	QEMU_TARGETS+="mips64-softmmu"
 	CXXFLAGS+="-I$TERMUX_PKG_TMPDIR/include/spice-server -I$TERMUX_PKG_TMPDIR/include/spice-1"
 	CFLAGS+=" $CPPFLAGS"
 	CXXFLAGS+=" $CPPFLAGS"
@@ -119,7 +124,8 @@ termux_step_configure() {
 		--enable-dmg \
 		--enable-parallels \
 		--enable-qed \
-		--enable-sheepdog
+		--enable-sheepdog \
+		--target-list="$QEMU_TARGETS"
 }
 
 termux_step_post_make_install() {
