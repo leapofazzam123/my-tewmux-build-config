@@ -6,6 +6,7 @@ TERMUX_PKG_VERSION=1:5.2.0
 TERMUX_PKG_REVISION=5
 TERMUX_PKG_SRCURL=https://github.com/ktemkin/qemu
 TERMUX_PKG_BRANCH='with_tcti'
+TERMUX_PKG_SHA256="cc43cb351bead1332911936f511b4eaa203119ba5ab1622e6cc786640686771e"
 TERMUX_PKG_DEPENDS="attr, glib, libbz2, libc++, libcap-ng, libcurl, libgcrypt, libiconv, libjpeg-turbo, liblzo, libnfs, libpixman, libpng, libssh, libx11, ncurses, qemu-common, resolv-conf, sdl2, sdl2-image, zlib, gtk3, libvte, spice-server"
 TERMUX_PKG_CONFLICTS="qemu-system-x86_64, qemu-system-x86_64-headless, qemu-system-x86-64-headless"
 TERMUX_PKG_REPLACES="qemu-system-x86_64, qemu-system-x86_64-headless, qemu-system-x86-64-headless"
